@@ -121,6 +121,7 @@ public class ProductRepositoryAndManagerTest {
 
         Product[] expected = {book1};
         Product[] actual = manager.searchBy("Anna Karenina");
+        Assertions.assertArrayEquals(expected, actual);
     }
 
 
