@@ -124,6 +124,44 @@ public class ProductRepositoryAndManagerTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    @Test
+    public void searchOneSmartphone() {
+        manager.add(phone1);
+        manager.add(phone2);
+        manager.add(phone3);
+        manager.add(phone4);
+
+        Product[] expected = {phone2};
+        Product[] actual = manager.searchBy("Samsung");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+
+    @Test
+    public void searchOneProduct() {
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(product3);
+        manager.add(product4);
+
+        Product[] expected = {product4};
+        Product[] actual = manager.searchBy("Knifes");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void searchOneProductAmongDiffGoods() {
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(book4);
+        manager.add(phone4);
+
+        Product[] expected = {product2};
+        Product[] actual = manager.searchBy("Glasses");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+
 
 }
 
