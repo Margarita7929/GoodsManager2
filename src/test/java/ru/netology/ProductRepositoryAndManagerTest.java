@@ -25,7 +25,7 @@ public class ProductRepositoryAndManagerTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
-    Book book1 = new Book(5, "Anna Karenina", 300, "Tolstoy");
+    Book book1 = new Book(5, "Jane Air",300, "Tolstoy");
     Book book2 = new Book(6, "Peace and War", 400, "Tolstoy");
     Book book3 = new Book(7, "Dandelion wine", 200, "Bradbury");
     Book book4 = new Book(8, "Jane Air", 350, "Bronte");
@@ -46,7 +46,7 @@ public class ProductRepositoryAndManagerTest {
 
     Smartphone phone1 = new Smartphone(5, "Nokia", 20000, "Japan");
     Smartphone phone2 = new Smartphone(6, "Samsung", 30000, "Korea");
-    Smartphone phone3 = new Smartphone(7, "IPhone", 60000, "Vietnam");
+    Smartphone phone3 = new Smartphone(7, "Jane Air", 60000, "Vietnam");
     Smartphone phone4 = new Smartphone(8, "Motorola", 5000, "China");
 
     @Test
@@ -119,8 +119,8 @@ public class ProductRepositoryAndManagerTest {
         manager.add(book3);
         manager.add(book4);
 
-        Product[] expected = {book1};
-        Product[] actual = manager.searchBy("Anna Karenina");
+        Product[] expected = {book2};
+        Product[] actual = manager.searchBy("Peace and War");
         Assertions.assertArrayEquals(expected, actual);
     }
 
@@ -161,6 +161,45 @@ public class ProductRepositoryAndManagerTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    @Test
+    public void searchIfThereAreNoSuchGoods() {
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(book1);
+        manager.add(phone4);
+
+
+        Product[] expected = {};
+        Product[] actual = manager.searchBy("Sun");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void searchIfSeveralSuitableGoods() {
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(book1);
+        manager.add(book4);
+        manager.add(phone4);
+
+
+        Product[] expected = {book1, book4};
+        Product[] actual = manager.searchBy("Jane Air");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void searchIfSeveralSuitableDiffGoods() {
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(book1);
+        manager.add(phone3);
+        manager.add(phone4);
+
+
+        Product[] expected = {book1, phone3};
+        Product[] actual = manager.searchBy("Jane Air");
+        Assertions.assertArrayEquals(expected, actual);
+    }
 
 
 }
