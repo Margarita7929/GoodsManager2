@@ -200,6 +200,15 @@ public class ProductRepositoryAndManagerTest {
         Product[] actual = manager.searchBy("Jane Air");
         Assertions.assertArrayEquals(expected, actual);
     }
+    @Test
+    public void searchIfNoAddedGoods() {
+
+
+
+        Product[] expected = {};
+        Product[] actual = manager.searchBy("Sun");
+        Assertions.assertArrayEquals(expected, actual);
+    }
 
 
 }
